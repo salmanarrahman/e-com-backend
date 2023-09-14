@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/home/iamsalman/NLD/book/logs/winston/successes/.4a50d2dece0c9dc776d5d8dd42ca329fb88656fe-audit.json",
+    "files": [
+        {
+            "date": 1694609629273,
+            "name": "/home/iamsalman/NLD/book/logs/winston/successes/phu-2023-13-09-18-success.log",
+            "hash": "700e79510fa2146416760c920d879fbe5156030b8cdba98a44c0b4646cc24173"
+        },
+        {
+            "date": 1694699069524,
+            "name": "/home/iamsalman/NLD/book/logs/winston/successes/phu-2023-14-09-19-success.log",
+            "hash": "09a8a6af973c8a96d9d868e65293362fa3c0e660b003d7503db4f4d4130e8058"
+        }
+    ],
+    "hashType": "sha256"
+}
