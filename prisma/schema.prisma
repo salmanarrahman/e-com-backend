@@ -12,7 +12,7 @@ datasource db {
 
 enum role {
   admin
-  customer
+  user
 }
 
 enum Status {
