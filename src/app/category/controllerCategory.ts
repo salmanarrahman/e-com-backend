@@ -4,7 +4,7 @@ import catchAsync from '../../shared/catchAsync';
 import sendResponse from '../../shared/sendResponse';
 import { serviceCategory } from './serviceCategory';
 
-const CategorySignUp = catchAsync(async (req: Request, res: Response) => {
+const createCategory = catchAsync(async (req: Request, res: Response) => {
   const result = await serviceCategory.createCategory(req.body);
 
   sendResponse(res, {
@@ -61,7 +61,7 @@ const updateSingleCategory = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const controllerCategory = {
-  CategorySignUp,
+  createCategory,
   getAllCategory,
   getSingleCategory,
   deleteSingleCategory,
