@@ -64,7 +64,7 @@ model ReviewAndRating {
   book   Book   @relation(fields: [bookId], references: [id])
 }
 
-model order {
+model Order {
   id         String   @id @default(uuid())
   userId     Int
   orderBooks Json[]
