@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/home/iamsalman/NLD/bookCatalogueAssignment/logs/winston/successes/.c6405d1ffdf3ad11c859ae9536e572ce0b30838d-audit.json",
+    "files": [
+        {
+            "date": 1694934793983,
+            "name": "/home/iamsalman/NLD/bookCatalogueAssignment/logs/winston/successes/phu-2023-17-09-13-success.log",
+            "hash": "2a9fcab83552bce236578fced2e3dabe8ac6ea4933733ad182afa33dd99b3e2a"
+        }
+    ],
+    "hashType": "sha256"
+}
