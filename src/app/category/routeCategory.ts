@@ -9,4 +9,4 @@ router.delete('/:id', controllerCategory.deleteSingleCategory);
 router.get('/:id', controllerCategory.getSingleCategory);
 router.patch('/:id', controllerCategory.updateSingleCategory);
 
-export const routerUser = router;
+export const routerCategory = router;

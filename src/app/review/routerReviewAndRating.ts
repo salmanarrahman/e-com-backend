@@ -9,4 +9,4 @@ router.delete('/:id', controllerReviewAndRating.deleteSingleReviewAndRating);
 router.get('/:id', controllerReviewAndRating.getSingleReviewAndRating);
 router.patch('/:id', controllerReviewAndRating.updateSingleReviewAndRating);
 
-export const routerUser = router;
+export const routerReview = router;

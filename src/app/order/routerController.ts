@@ -9,4 +9,4 @@ router.delete('/:id', controllerOrder.deleteSingleOrder);
 router.get('/:id', controllerOrder.getSingleOrder);
 router.patch('/:id', controllerOrder.updateSingleOrder);
 
-export const routerUser = router;
+export const routerOrder = router;

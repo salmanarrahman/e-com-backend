@@ -8,4 +8,4 @@ router.delete('/:id', controllerBook.deleteSingleBook);
 router.get('/:id', controllerBook.getSingleBook);
 router.patch('/:id', controllerBook.updateSingleBook);
 
-export const routerUser = router;
+export const routerBook = router;
