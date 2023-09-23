@@ -5,6 +5,7 @@ const router = Router();
 router.post('/create-book', controllerBook.createBook);
 router.get('/', controllerBook.getAllBook);
 router.delete('/:id', controllerBook.deleteSingleBook);
+router.get('/:categoryId/category', controllerBook.getBookByCategory);
 router.get('/:id', controllerBook.getSingleBook);
 router.patch('/:id', controllerBook.updateSingleBook);
 

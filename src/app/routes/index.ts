@@ -12,15 +12,15 @@ const moduleRoutes = [
     routes: routerUser,
   },
   {
-    path: 'api/v1/categories',
+    path: '/api/v1/categories',
     routes: routerCategory,
   },
   {
-    path: 'api/v1/books',
+    path: '/api/v1/books',
     routes: routerBook,
   },
   {
-    path: 'api/v1/orders',
+    path: '/api/v1/orders',
     routes: routerOrder,
   },
 ];

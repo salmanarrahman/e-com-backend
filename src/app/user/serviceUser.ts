@@ -30,7 +30,7 @@ const userLogin = async (data: userLoginReq): Promise<User | null> => {
 const getAllUser = async (): Promise<User[] | null> => {
   const result = await prisma.user.findMany({
     where: {
-      role: 'user',
+      role: 'customer',
     },
   });
   return result;
@@ -39,7 +39,7 @@ const getAllUser = async (): Promise<User[] | null> => {
 const getSingleUser = async (id: string): Promise<any> => {
   const result = await prisma.user.findMany({
     where: {
-      role: 'user',
+      role: 'customer',
       id: id,
     },
   });
@@ -49,7 +49,7 @@ const getSingleUser = async (id: string): Promise<any> => {
 const deleteSingleUser = async (id: string): Promise<any> => {
   const result = await prisma.user.delete({
     where: {
-      role: 'user',
+      role: 'customer',
       id: id,
     },
   });
@@ -68,7 +68,7 @@ const updateSingleUser = async (
   const isExist = await prisma.user.findUnique({
     where: {
       id: id,
-      role: 'user',
+      role: 'customer',
     },
   });
 
