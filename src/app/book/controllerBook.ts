@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import catchAsync from '../../shared/catchAsync';
+import pick from '../../shared/pick';
 import sendResponse from '../../shared/sendResponse';
 import { serviceBook } from './serviceBook';
 
@@ -16,7 +17,19 @@ const createBook = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllBook = catchAsync(async (req: Request, res: Response) => {
-  const result = await serviceBook.getAllBook();
+  const option = pick(req.query, ['page', 'size', 'limit', 'skip']);
+  const filter = pick(req.query, [
+    'minPrice',
+    'maxPrice',
+    'category',
+    'search',
+    'sortBy',
+    'orderBy',
+  ]);
+  console.log(option);
+  console.log(filter);
+
+  const result = await serviceBook.getAllBook(filter, option);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

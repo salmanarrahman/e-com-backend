@@ -1,6 +1,9 @@
 import { Book } from '@prisma/client';
 import httpStatus from 'http-status';
 import ApiError from '../../errors/ApiError';
+import { paginationHelpers } from '../../helpers/paginationHelper';
+import { IGenericResponse } from '../../interfaces/common';
+import { IPaginationOptions } from '../../interfaces/pagination';
 import prisma from '../../shared/prisma';
 
 const createBook = (data: Book): Promise<Book> => {
@@ -11,9 +14,26 @@ const createBook = (data: Book): Promise<Book> => {
   return result;
 };
 
-const getAllBook = async (): Promise<Book[] | null> => {
-  const result = await prisma.book.findMany();
-  return result;
+const getAllBook = async (
+  filter: any,
+  options: IPaginationOptions
+): Promise<IGenericResponse<Book[]> | null> => {
+  const { page, limit, skip } = paginationHelpers.calculatePagination(options);
+
+  const result = await prisma.book.findMany({
+    skip,
+    take: limit,
+  });
+  const total = await prisma.book.count();
+
+  return {
+    meta: {
+      total,
+      page,
+      limit,
+    },
+    data: result,
+  };
 };
 
 const getSingleBook = async (id: string): Promise<any> => {
@@ -22,6 +42,7 @@ const getSingleBook = async (id: string): Promise<any> => {
       id: id,
     },
   });
+
   return result;
 };
 const getBookByCategory = async (id: string): Promise<any> => {
