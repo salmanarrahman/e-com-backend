@@ -17,20 +17,52 @@ const createBook = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllBook = catchAsync(async (req: Request, res: Response) => {
-  const option = pick(req.query, ['page', 'size', 'limit', 'skip']);
-  const filter = pick(req.query, [
-    'minPrice',
-    'maxPrice',
-    'categoryId',
-    'search',
+  const option = pick(req.query, [
+    'page',
+    'size',
+    'limit',
+    'skip',
     'sortBy',
     'sortOrder',
     'orderBy',
-    'author',
-    'title',
   ]);
+  let filter: any = pick(req.query, ['category', 'search', 'author', 'title']);
 
-  const result = await serviceBook.getAllBook(filter, option);
+  const pricing: any = pick(req.query, ['minPrice', 'maxPrice']);
+  console.log(pricing);
+
+  if (filter.category) {
+    const { category, ...rest } = filter;
+    filter = {
+      categoryId: category,
+      ...rest,
+    };
+  }
+
+  // if (filter.minPrice) {
+  //   const { minPrice, ...rest } = filter;
+  //   const price = parseInt(minPrice.toString());
+  //   filter = {
+  //     price: {
+  //       gte: price,
+  //     },
+  //     ...rest,
+  //   };
+  // }
+  // if (filter.maxPrice) {
+  //   const { maxPrice, ...rest } = filter;
+  //   const price = parseInt(maxPrice.toString());
+  //   filter = {
+  //     price: {
+  //       lte: price,
+  //     },
+  //     ...rest,
+  //   };
+  // }
+
+  console.log(filter);
+
+  const result = await serviceBook.getAllBook(filter, option, pricing);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

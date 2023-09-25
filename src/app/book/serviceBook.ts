@@ -17,7 +17,8 @@ const createBook = (data: Book): Promise<Book> => {
 
 const getAllBook = async (
   filter: IStudentFilterOptions,
-  options: IPaginationOptions
+  options: IPaginationOptions,
+  pricing: any
 ): Promise<IGenericResponse<Book[]> | null> => {
   const { page, limit, skip } = paginationHelpers.calculatePagination(options);
   const { search, ...filterData } = filter;
@@ -34,6 +35,32 @@ const getAllBook = async (
         },
       })),
     });
+  }
+
+  if (pricing.minPrice && pricing.maxPrice) {
+    andCondition.push({
+      price: {
+        gte: parseInt(pricing.minPrice.toString()),
+        lte: parseInt(pricing.maxPrice.toString()),
+      },
+    });
+  }
+  if (pricing.minPrice) {
+    andCondition.push({
+      price: {
+        gte: parseInt(pricing.minPrice.toString()),
+      },
+    });
+    delete filter.minPrice;
+  }
+
+  if (pricing.maxPrice) {
+    andCondition.push({
+      price: {
+        lte: parseInt(pricing.maxPrice.toString()),
+      },
+    });
+    delete filter.maxPrice;
   }
 
   if (Object.keys(filterData).length > 0) {
@@ -54,17 +81,25 @@ const getAllBook = async (
     where: whereCondition,
     skip,
     take: limit,
-    // orderBy:
-    //   options.sortBy && options.sortOrder
-    //     ? {
-    //         [options.sortBy]: options.sortOrder,
-    //       }
-    //     : {
-    //         title: 'asc',
-    //       },
+    // price: options.minPrice  ? {
+    //   lte : options.minPrice
+    // } :
+    // options.maxPrice ? {
+    //   gte : options.maxPrice
+    // } : undefined,
+    orderBy:
+      options.sortBy && options.sortOrder
+        ? {
+            [options.sortBy]: options.sortOrder,
+          }
+        : {
+            title: 'asc',
+          },
   });
 
-  const total = await prisma.book.count();
+  console.log(result);
+
+  const total = await result.length;
 
   return {
     meta: {
