@@ -21,13 +21,14 @@ const getAllBook = catchAsync(async (req: Request, res: Response) => {
   const filter = pick(req.query, [
     'minPrice',
     'maxPrice',
-    'category',
+    'categoryId',
     'search',
     'sortBy',
+    'sortOrder',
     'orderBy',
+    'author',
+    'title',
   ]);
-  console.log(option);
-  console.log(filter);
 
   const result = await serviceBook.getAllBook(filter, option);
 
