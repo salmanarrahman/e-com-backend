@@ -1,4 +1,5 @@
 import express from 'express';
+import { routerAuth } from '../auth/routerAuth';
 import { routerBook } from '../book/routeBook';
 import { routerCategory } from '../category/routeCategory';
 import { routerOrder } from '../order/routerController';
@@ -7,6 +8,10 @@ import { routerUser } from '../user/routerUser';
 const router = express.Router();
 
 const moduleRoutes = [
+  {
+    path: '/api/v1/auth',
+    routes: routerAuth,
+  },
   {
     path: '/api/v1/users',
     routes: routerUser,
