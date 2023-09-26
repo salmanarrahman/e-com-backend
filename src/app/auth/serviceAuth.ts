@@ -15,6 +15,16 @@ const userSignUp = async (data: User): Promise<User> => {
   return result;
 };
 
+const checkUser = async (id: string): Promise<User | null> => {
+  const result = await prisma.user.findUnique({
+    where: {
+      id: id,
+    },
+  });
+
+  return result;
+};
+
 const userLogin = async (data: User): Promise<ILoginResponse | null> => {
   const result = await prisma.user.findUnique({
     where: {
@@ -49,4 +59,5 @@ const userLogin = async (data: User): Promise<ILoginResponse | null> => {
 export const serviceAuth = {
   userSignUp,
   userLogin,
+  checkUser,
 };

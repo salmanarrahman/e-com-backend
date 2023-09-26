@@ -1,10 +1,20 @@
 import { Router } from 'express';
+import { ENUM_ROLES } from '../../enum/user';
+import auth from '../middlewares/auth';
 import { controllerOrder } from './controllerOrder';
 
 const router = Router();
 
-router.post('/create-order', controllerOrder.createOrder);
-router.get('/', controllerOrder.getAllOrder);
+router.post(
+  '/create-order',
+  auth(ENUM_ROLES.CUSTOMER),
+  controllerOrder.createOrder
+);
+router.get(
+  '/',
+  auth(ENUM_ROLES.ADMIN, ENUM_ROLES.SUPER_ADMIN),
+  controllerOrder.getAllOrder
+);
 router.delete('/:id', controllerOrder.deleteSingleOrder);
 router.get('/:id', controllerOrder.getSingleOrder);
 router.patch('/:id', controllerOrder.updateSingleOrder);

@@ -3,7 +3,7 @@ import httpStatus from 'http-status';
 import ApiError from '../../errors/ApiError';
 import prisma from '../../shared/prisma';
 
-const createOrder = (data: any): Promise<Order> => {
+const createOrder = (data: any): Promise<any> => {
   const result = prisma.order.create({
     data,
   });
@@ -11,8 +11,12 @@ const createOrder = (data: any): Promise<Order> => {
   return result;
 };
 
-const getAllOrder = async (): Promise<Order[] | null> => {
-  const result = await prisma.order.findMany();
+const getAllOrder = async (id: string | undefined): Promise<Order[] | null> => {
+  const result = await prisma.order.findMany({
+    where: {
+      userId: id,
+    },
+  });
   return result;
 };
 
@@ -41,7 +45,7 @@ const deleteSingleOrder = async (id: string): Promise<any> => {
 
 const updateSingleOrder = async (
   id: string,
-  payload: Partial<Order>
+  payload: any
 ): Promise<Order | null> => {
   const isExist = await prisma.order.findUnique({
     where: {
