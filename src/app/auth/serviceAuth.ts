@@ -5,6 +5,7 @@ import config from '../../config';
 import ApiError from '../../errors/ApiError';
 import { jwtHelpers } from '../../helpers/jwtHelpers';
 import prisma from '../../shared/prisma';
+import { ILoginResponse } from './interfaceAuth';
 
 const userSignUp = async (data: User): Promise<User> => {
   const result = await prisma.user.create({
@@ -14,7 +15,7 @@ const userSignUp = async (data: User): Promise<User> => {
   return result;
 };
 
-const userLogin = async (data: User): Promise<User | null> => {
+const userLogin = async (data: User): Promise<ILoginResponse | null> => {
   const result = await prisma.user.findUnique({
     where: {
       email: data.email,
@@ -39,7 +40,10 @@ const userLogin = async (data: User): Promise<User | null> => {
 
   console.log(result);
 
-  return result;
+  return {
+    result,
+    token,
+  };
 };
 
 export const serviceAuth = {
