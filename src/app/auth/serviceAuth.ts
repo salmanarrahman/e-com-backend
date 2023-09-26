@@ -1,6 +1,9 @@
 import { User } from '@prisma/client';
 import httpStatus from 'http-status';
+import { Secret } from 'jsonwebtoken';
+import config from '../../config';
 import ApiError from '../../errors/ApiError';
+import { jwtHelpers } from '../../helpers/jwtHelpers';
 import prisma from '../../shared/prisma';
 
 const userSignUp = async (data: User): Promise<User> => {
@@ -22,6 +25,17 @@ const userLogin = async (data: User): Promise<User | null> => {
   if (!result) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }
+
+  const { id, role } = result;
+
+  const token = jwtHelpers.createToken(
+    {
+      id,
+      role,
+    },
+    config.jwt.secret as Secret,
+    config.jwt.expires_in as string
+  );
 
   console.log(result);
 
