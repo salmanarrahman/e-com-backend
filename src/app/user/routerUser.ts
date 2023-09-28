@@ -5,7 +5,7 @@ import { controllerUser } from './controllerUser';
 
 const router = Router();
 
-router.post('/signup', controllerUser.userSignUp);
+//router.post('/signup', controllerUser.userSignUp);
 router.get(
   '/',
   auth(ENUM_ROLES.ADMIN, ENUM_ROLES.SUPER_ADMIN),

@@ -49,6 +49,7 @@ const createOrder = catchAsync(async (req: Request, res: Response) => {
 
 const getAllOrder = catchAsync(async (req: Request, res: Response) => {
   const auth: any = req.headers.authorization;
+  let result;
 
   let verification;
   try {
@@ -60,7 +61,17 @@ const getAllOrder = catchAsync(async (req: Request, res: Response) => {
   // eslint-disable-next-line no-unused-vars
   const { id, role } = verification;
 
-  const result = await serviceOrder.getAllOrder(id);
+  const check = await serviceAuth.checkUser(id);
+
+  if (!check) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'Invalid User');
+  }
+
+  if (role !== 'admin') {
+    result = await serviceOrder.getAllOrder(id);
+  } else {
+    result = await serviceOrder.getAllOrder(undefined);
+  }
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

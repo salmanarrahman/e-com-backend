@@ -13,7 +13,17 @@ const userLogin = catchAsync(async (req: Request, res: Response) => {
     token: result?.token,
   });
 });
+const userSignup = catchAsync(async (req: Request, res: Response) => {
+  const result = await serviceAuth.userSignUp(req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User created successfully!',
+    data: result,
+  });
+});
 
 export const controllerAuth = {
   userLogin,
+  userSignup,
 };

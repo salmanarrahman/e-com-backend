@@ -28,11 +28,7 @@ const userLogin = async (data: userLoginReq): Promise<User | null> => {
 };
 
 const getAllUser = async (): Promise<User[] | null> => {
-  const result = await prisma.user.findMany({
-    where: {
-      role: 'customer',
-    },
-  });
+  const result = await prisma.user.findMany();
   return result;
 };
 
