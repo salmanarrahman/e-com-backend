@@ -3,10 +3,15 @@ https://e-com-backend-mu.vercel.app/ </br>
 
 User
 https://e-com-backend-mu.vercel.app/api/v1/auth/signup (POST) </br>
+
 https://e-com-backend-mu.vercel.app/api/v1/auth/signin (POST) </br>
+
 https://e-com-backend-mu.vercel.app/api/v1/users (GET) </br>
+
 https://e-com-backend-mu.vercel.app/api/v1/users/24748ef1-9bb3-4f33-b3d8-45d85ca9fd77 (Single GET) Include an id  </br>
+
 https://e-com-backend-mu.vercel.app/api/v1/users/24748ef1-9bb3-4f33-b3d8-45d85ca9fd77 (PATCH) </br>
+
 https://e-com-backend-mu.vercel.app/api/v1/users/24748ef1-9bb3-4f33-b3d8-45d85ca9fd77 (DELETE) Include an id  </br>
 
 
