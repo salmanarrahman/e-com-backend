@@ -47,4 +47,3 @@ https://e-com-backend-mu.vercel.app/api/v1/orders/create-order (POST) </br>
 
 https://e-com-backend-mu.vercel.app/api/v1/orders (GET) </br>
 
-https://e-com-backend-mu.vercel.app/api/v1/orders/f609e7fc-21bb-42cf-b76f-4c119f3238e9 (GET) </br>
